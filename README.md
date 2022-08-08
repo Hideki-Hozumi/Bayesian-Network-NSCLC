@@ -5,7 +5,8 @@ response of Immunotherapy against Non-Small-Cell Lung Cancer" by Hozumi et al.
 
 # Description.
   NB is a probabilistic model based on Bayes' theorem and the assumption that all covariates are equally important without distinction and are conditionally independent given a class value.   
-  TAN is based on Naïve Bayes model. Unlike NB, TAN alleviates conditional independence between features while keeping the directed acyclic graph simple
+  TAN is based on Naïve Bayes model. Unlike NB, TAN alleviates conditional independence between features while keeping the directed acyclic graph simple.
+  For further information as to our approaches, see our published paper.
 
 # Requirement
 ・The available code works on R, so if you want to try our models, you have to install R to you computer. The dataset is available on cBioPortal (http://www.cbioportal.org).  
