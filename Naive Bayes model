@@ -1,1 +1,23 @@
+#data-driven dataset is loaded as "frequency", and the data is downloaded from cBioPortal
+frequency<-read.table("frequency29.txt", header=TRUE,sep=",", stringsAsFactors=TRUE)
 
+#randomly separating dataset into training and testing dataset
+set.seed(100) 
+testf <- sample(1:nrow(frequency), nrow(frequency)/3)
+trainf <- -testf
+trainingf <- frequency[trainf,]
+trainingf_data <- as.data.frame(lapply(trainingf, as.factor))
+testingf <- frequency[testf,]
+testingf_data <- as.data.frame(lapply(testingf, as.factor))
+
+nbayes_f=naive.bayes(trainingf_data, training="Benefit")
+pr.nbayes_f <- predict(nbayes_f,testingf_data, prob=TRUE)
+r_nbayes_f <- attributes(pr.nbayes_f)$prob[2,]
+pred_nbayes_f<-prediction(r_nbayes_f, testingf_data$Benefit)
+perf_nbayes_f<-performance(pred_nbayes_f29, "tpr", "fpr")
+plot(perf_nbayes_f)
+
+
+auc_nbayes_f.tmp <- performance(pred_nbayes_f,"auc")
+auc_nbayes_f <- as.numeric(auc_nbayes_f.tmp@y.values)
+auc_nbayes_f
