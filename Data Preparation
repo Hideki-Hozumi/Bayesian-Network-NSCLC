@@ -1,1 +1,27 @@
+#Evidence-based dataset is loaded as "driver"
+driver<-read.table("driver.txt", header=TRUE,sep=",", stringsAsFactors=TRUE)
 
+#train-test split
+set.seed(100) 
+testd <- sample(1:nrow(driver), nrow(driver)/3)
+traind <- -testd
+trainingd <- driver[traind,]
+trainingd_data <- as.data.frame(lapply(trainingd, as.factor))
+testingd <- driver[testd,]
+testingd_data <- as.data.frame(lapply(testingd, as.factor))
+##########################################################################################
+
+
+#DAta-driven dataset is loaded as "driver"
+
+frequency<-read.table("frequency.txt", header=TRUE,sep=",", stringsAsFactors=TRUE)
+frequency
+
+#train-test split for frequency
+set.seed(100) 
+testf <- sample(1:nrow(frequency), nrow(frequency)/3)
+trainf <- -testf
+trainingf <- frequency29[trainf,]
+trainingf_data <- as.data.frame(lapply(trainingf, as.factor))
+testingf <- frequency[testf,]
+testingf_data <- as.data.frame(lapply(testingf, as.factor))
