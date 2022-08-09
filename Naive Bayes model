@@ -1,14 +1,5 @@
-#data-driven dataset is loaded as "frequency", and the data is downloaded from cBioPortal
-frequency<-read.table("frequency29.txt", header=TRUE,sep=",", stringsAsFactors=TRUE)
-
-#randomly separating dataset into training and testing dataset
-set.seed(100) 
-testf <- sample(1:nrow(frequency), nrow(frequency)/3)
-trainf <- -testf
-trainingf <- frequency[trainf,]
-trainingf_data <- as.data.frame(lapply(trainingf, as.factor))
-testingf <- frequency[testf,]
-testingf_data <- as.data.frame(lapply(testingf, as.factor))
+#Estimation with data-driven dataset
+#bnlearn package is used here, and for ROC analysis, ROCOR package is required
 
 nbayes_f=naive.bayes(trainingf_data, training="Benefit")
 pr.nbayes_f <- predict(nbayes_f,testingf_data, prob=TRUE)
@@ -16,8 +7,19 @@ r_nbayes_f <- attributes(pr.nbayes_f)$prob[2,]
 pred_nbayes_f<-prediction(r_nbayes_f, testingf_data$Benefit)
 perf_nbayes_f<-performance(pred_nbayes_f29, "tpr", "fpr")
 plot(perf_nbayes_f)
-
-
 auc_nbayes_f.tmp <- performance(pred_nbayes_f,"auc")
 auc_nbayes_f <- as.numeric(auc_nbayes_f.tmp@y.values)
 auc_nbayes_f
+
+#########################################
+#Estimation with evidence-based dataset
+nbayes_d=naive.bayes(trainingd_data, training="Benefit")
+graphviz.plot(nbayes_d, layout="fdp", shape="ellipse")
+pr.nbayes_d<- predict(nbayes_d,testingd_data, prob=TRUE)
+r_nbayes_d <- attributes(pr.nbayes_d)$prob[2,]
+pred_nbayes_d<-prediction(r_nbayes_d, testingd_data$Benefit)
+perf_nbayes_d<-performance(pred_nbayes_d, "tpr", "fpr")
+plot(perf_nbayes_d)
+auc_nbayes_d.tmp <- performance(pred_nbayes_d,"auc")
+auc_nbayes_d <- as.numeric(auc_nbayes_d.tmp@y.values)
+auc_nbayes_d
