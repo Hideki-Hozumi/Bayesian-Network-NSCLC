@@ -1,1 +1,25 @@
+#Estimation with data-driven dataset
+tan_f=tree.bayes(trainingf_data, training="Benefit")
+graphviz.plot(tan_f, layout="fdp", shape="ellipse")
+pr.tan_f <- predict(tan_f,testingf_data, prob=TRUE)
+r_tan_f <- attributes(pr.tan_f)$prob[2,]
+pred_tan_f<-prediction(r_tan_f, testingf_data$Benefit)
+perf_tan_f<-performance(pred_tan_f, "tpr", "fpr")
+plot(perf_tan_f)
+auc_tan_f.tmp <- performance(pred_tan_f,"auc")
+auc_tan_f <- as.numeric(auc_tan_f.tmp@y.values)
+auc_tan_f
 
+########################################################
+
+#Estimation with evidence-based dataset
+tan_d=tree.bayes(trainingd_data, training="Benefit")
+graphviz.plot(tan_d, layout="twopi", shape="ellipse")
+pr.tan_d <- predict(tan_d,testingd_data, prob=TRUE)
+r_tan_d <- attributes(pr.tan_d)$prob[2,]
+pred_tan_d<-prediction(r_tan_d, testingd_data$Benefit)
+perf_tan_d<-performance(pred_tan_d, "tpr", "fpr")
+plot(perf_tan_d)
+auc_tan_d.tmp <- performance(pred_tan_d,"auc")
+auc_tan_d <- as.numeric(auc_tan_d.tmp@y.values)
+auc_tan_d
