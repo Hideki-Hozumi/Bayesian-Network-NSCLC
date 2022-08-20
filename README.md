@@ -1,6 +1,5 @@
 # Prediction-with-bayesian-network.  
-   This is a supplementary material of an article, "Constructing simple and interpretable network models to predict 
-response of Immunotherapy against Non-Small-Cell Lung Cancer" by Hozumi et al.   
+   This is a supplementary material of an article, "Bayesian network enables interpretable yet state-of-the-art prediction of immunotherapy in cancer patients" by Hozumi et al.   
    Here, we provide Naive Bayes (NB) and Tree augmented naive bayes (TAN) model to predict durable clinical benefit of patients treated with immunotherapy
 
 # Description.
