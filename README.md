@@ -16,4 +16,4 @@
    Hideki Hozumi (Keio University School of Medicine)
 
 # Reference.  
-   Hideki H, Hideyuki Shimizu, "Bayesian network enables interpretable yet state-of-the-art prediction of immunotherapy in cancer patients",  -----------
+   Hideki H, Hideyuki Shimizu, "Bayesian network enables interpretable yet state-of-the-art prediction of immunotherapy in cancer patients".
